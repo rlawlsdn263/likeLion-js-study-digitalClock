@@ -1,19 +1,61 @@
+const timeClock = document.querySelector(".time-clock");
+const body = document.querySelector("body");
+
+const MIN_DURATION = 10;
+
 //시계함수
-function clock() {
-  let date = new Date();
-  let hours = String(date.getHours()).padStart(2, "0");
-  let minutes = String(date.getMinutes()).padStart(2, "0");
-  let seconds = String(date.getSeconds()).padStart(2, "0");
-
-  // hours가 12 이상이면 pm 아니면 am
+function getTime() {
+  const date = new Date();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
   const ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
 
-  console.log(hours, minutes, seconds, ampm);
+  timeClock.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
-clock();
-const digitalTimer = setInterval(clock, 1000);
+function makeSnowflake() {
+  const snowflake = document.createElement("div");
+  const delay = Math.random() * 10;
+  const initialOpacity = Math.random();
+  const duration = Math.random() * 20 + MIN_DURATION;
+
+  snowflake.classList.add("snowflake");
+  snowflake.style.left = `${Math.random() * window.screen.width}px`;
+  snowflake.style.animationDelay = `${delay}s`;
+  snowflake.style.opacity = initialOpacity;
+  snowflake.style.animation = `fall ${duration}s linear`;
+
+  body.appendChild(snowflake);
+
+  setTimeout(() => {
+    body.removeChild(snowflake);
+  }, (duration + delay) * 1000);
+}
+
+getTime();
+setInterval(getTime, 1000);
+
+for (let index = 0; index < 500; index++) {
+  setTimeout(makeSnowflake, 500 * index);
+}
+
+// const 변수 = setInterval(getTime, 10000);
+
+// console.log(getTime());
+// getTime();
+
+// hours가 12 이상이면 pm 아니면 am
+// const ampm = hours >= 12 ? "PM" : "AM";
+
+// if (hours > 12) {
+//   hours = hours - 12;
+// }
+
+// console.log(hours, minutes, seconds, ampm);
+
+// clock();
+// setInterval(clock, 1000);
 
 //Date MDN
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date

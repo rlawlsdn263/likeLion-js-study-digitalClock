@@ -1,6 +1,48 @@
-.time-wrapper {
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Rubik Bubbles', cursive;
+}
+
+body {
+  overflow: hidden;
+}
+
+.main {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #212121;
+}
+
+.time-clock {
+  font-size: 120px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.snowflake {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -8px;
+  /* animation: fall 10s linear; */
+}
+
+/* 애니메이션 */
+@keyframes fall {
+  from {
+
+  }
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
