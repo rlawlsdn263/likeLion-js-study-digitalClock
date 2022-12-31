@@ -30,13 +30,14 @@ function makeSnowflake() {
 
   setTimeout(() => {
     body.removeChild(snowflake);
+    makeSnowflake();
   }, (duration + delay) * 1000);
 }
 
 getTime();
 setInterval(getTime, 1000);
 
-for (let index = 0; index < 500; index++) {
+for (let index = 0; index < 50; index++) {
   setTimeout(makeSnowflake, 500 * index);
 }
 
